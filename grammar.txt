@@ -1,0 +1,9 @@
+Program -> (FunctionDef | CallStmt)* EOF
+FunctionDef -> 'def' IDENTIFIER '(' ParamsOpt ')' ':' 'return' Expr ';'
+ParamsOpt -> IDENTIFIER (',' IDENTIFIER)* | epsilon
+CallStmt -> Call ';'
+Call -> IDENTIFIER '(' ArgsOpt ')'
+ArgsOpt -> Expr (',' Expr)* | epsilon
+Expr -> Term (('+' | '-') Term)*
+Term -> Factor (('*' | '/') Factor)*
+Factor -> NUMBER | STRING | IDENTIFIER | Call | '(' Expr ')'
