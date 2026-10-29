@@ -1,0 +1,24 @@
+name: Run Function Definition Compiler
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  run-compiler:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run compiler with sample input
+        run: python main.py < sample_input.txt
+
+      - name: Run compiler tests
+        run: python -m unittest discover -s tests -v
